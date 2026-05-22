@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: CDP Documentation
+    url: https://docs.cdp.coinbase.com/
+    about: Visit the CDP documentation for guides and API references.
