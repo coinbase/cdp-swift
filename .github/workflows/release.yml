@@ -248,13 +248,20 @@ jobs:
           VERSION="${{ steps.ctx.outputs.version }}"
           TAG_TARGET="${{ steps.tag_target.outputs.tag_target }}"
 
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Create tag via GitHub API so it's signed with GitHub's GPG key
+          TAG_SHA=$(gh api "repos/${GITHUB_REPOSITORY}/git/tags" \
+            -f tag="${VERSION}" \
+            -f message="CDP Swift SDK v${VERSION}" \
+            -f object="${TAG_TARGET}" \
+            -f type="commit" \
+            --jq '.sha')
 
-          git tag -a "${VERSION}" "${TAG_TARGET}" -m "CDP Swift SDK v${VERSION}"
-          git push origin "refs/tags/${VERSION}"
+          # Create the ref pointing to the tag object
+          gh api "repos/${GITHUB_REPOSITORY}/git/refs" \
+            -f ref="refs/tags/${VERSION}" \
+            -f sha="${TAG_SHA}"
 
-          echo "Tagged ${VERSION} at ${TAG_TARGET}"
+          echo "Tagged ${VERSION} at ${TAG_TARGET} (signed via API)"
 
       - name: Create GitHub Release
         shell: bash
