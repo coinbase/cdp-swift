@@ -1,0 +1,314 @@
+name: Release
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to release (e.g. 1.2.3). If omitted, reads from Package.swift."
+        required: false
+        type: string
+      cleanup_staging:
+        description: "Delete .release/<version> staging directory after tagging"
+        required: false
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: cdp-swift-release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Publish release
+    runs-on: ubuntu-latest
+    if: >-
+      ${{
+        github.event_name == 'workflow_dispatch' ||
+        (
+          github.event_name == 'pull_request' &&
+          github.event.pull_request.merged == true &&
+          github.event.pull_request.head.repo.full_name == github.repository &&
+          startsWith(github.event.pull_request.head.ref, 'release/v')
+        )
+      }}
+
+    env:
+      GH_TOKEN: ${{ github.token }}
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Determine version
+        id: ctx
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            SOURCE_SHA="${{ github.event.pull_request.merge_commit_sha }}"
+            HEAD_REF="${{ github.event.pull_request.head.ref }}"
+            BRANCH_VERSION="${HEAD_REF#release/v}"
+            CLEANUP_STAGING="true"
+          else
+            SOURCE_SHA=""
+            BRANCH_VERSION="${{ inputs.version }}"
+            CLEANUP_STAGING="${{ inputs.cleanup_staging }}"
+          fi
+
+          # Default to HEAD of main
+          if [[ -z "${SOURCE_SHA}" ]]; then
+            SOURCE_SHA="$(git rev-parse HEAD)"
+          fi
+
+          # Ensure we're on the correct commit
+          git checkout "${SOURCE_SHA}"
+
+          # Extract version from Package.swift
+          PACKAGE_VERSION="$(sed -n 's/^[[:space:]]*let version = "\([^"]*\)"/\1/p' Package.swift)"
+          if [[ -z "${PACKAGE_VERSION}" ]]; then
+            echo "::error::Could not extract version from Package.swift"
+            exit 1
+          fi
+
+          # Use branch version if available, otherwise package version
+          EXPECTED_VERSION="${BRANCH_VERSION:-${PACKAGE_VERSION}}"
+
+          if [[ "${EXPECTED_VERSION}" != "${PACKAGE_VERSION}" ]]; then
+            echo "::error::Branch version '${EXPECTED_VERSION}' != Package.swift version '${PACKAGE_VERSION}'"
+            exit 1
+          fi
+
+          # Validate semver
+          if [[ ! "${PACKAGE_VERSION}" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
+            echo "::error::Invalid semver: ${PACKAGE_VERSION}"
+            exit 1
+          fi
+
+          echo "source_sha=${SOURCE_SHA}" >> "$GITHUB_OUTPUT"
+          echo "version=${PACKAGE_VERSION}" >> "$GITHUB_OUTPUT"
+          echo "cleanup_staging=${CLEANUP_STAGING}" >> "$GITHUB_OUTPUT"
+
+      - name: Validate release staging
+        id: validate
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          VERSION="${{ steps.ctx.outputs.version }}"
+          MANIFEST=".release/${VERSION}/manifest.json"
+          NOTES=".release/${VERSION}/RELEASE_NOTES.md"
+          ASSET_DIR=".release/${VERSION}/assets"
+
+          if [[ ! -f "${MANIFEST}" ]]; then
+            echo "::error::Missing ${MANIFEST}"
+            exit 1
+          fi
+
+          if [[ ! -f "${NOTES}" ]]; then
+            echo "::error::Missing ${NOTES}"
+            exit 1
+          fi
+
+          # Validate manifest version matches
+          MANIFEST_VERSION="$(jq -r '.version' "${MANIFEST}")"
+          if [[ "${MANIFEST_VERSION}" != "${VERSION}" ]]; then
+            echo "::error::Manifest version '${MANIFEST_VERSION}' != expected '${VERSION}'"
+            exit 1
+          fi
+
+          # Validate Package.swift checksum matches manifest
+          PACKAGE_CHECKSUM="$(sed -n 's/^[[:space:]]*let checksum = "\([^"]*\)"/\1/p' Package.swift)"
+          MANIFEST_CHECKSUM="$(jq -r '.binaryTarget.checksum' "${MANIFEST}")"
+          if [[ "${PACKAGE_CHECKSUM}" != "${MANIFEST_CHECKSUM}" ]]; then
+            echo "::error::Package.swift checksum '${PACKAGE_CHECKSUM}' != manifest checksum '${MANIFEST_CHECKSUM}'"
+            exit 1
+          fi
+
+          # Required: xcframework zip must exist
+          if [[ ! -f "${ASSET_DIR}/CDPCore.xcframework.zip" ]]; then
+            echo "::error::Missing required asset: ${ASSET_DIR}/CDPCore.xcframework.zip"
+            exit 1
+          fi
+
+          # Validate SHA-256 checksums for all assets listed in manifest
+          echo "Validating asset checksums..."
+          ASSET_COUNT="$(jq '.assets | length' "${MANIFEST}")"
+          for i in $(seq 0 $((ASSET_COUNT - 1))); do
+            ASSET_NAME="$(jq -r ".assets[${i}].name" "${MANIFEST}")"
+            EXPECTED_SHA="$(jq -r ".assets[${i}].sha256" "${MANIFEST}")"
+            ASSET_FILE="${ASSET_DIR}/${ASSET_NAME}"
+
+            if [[ ! -f "${ASSET_FILE}" ]]; then
+              IS_REQUIRED="$(jq -r ".assets[${i}].required" "${MANIFEST}")"
+              if [[ "${IS_REQUIRED}" == "true" ]]; then
+                echo "::error::Required asset missing: ${ASSET_NAME}"
+                exit 1
+              fi
+              echo "  Skipping optional missing asset: ${ASSET_NAME}"
+              continue
+            fi
+
+            ACTUAL_SHA="$(sha256sum "${ASSET_FILE}" | awk '{print $1}')"
+            if [[ "${ACTUAL_SHA}" != "${EXPECTED_SHA}" ]]; then
+              echo "::error::SHA-256 mismatch for ${ASSET_NAME}: got ${ACTUAL_SHA}, expected ${EXPECTED_SHA}"
+              exit 1
+            fi
+            echo "  ✓ ${ASSET_NAME}"
+          done
+
+          echo "manifest=${MANIFEST}" >> "$GITHUB_OUTPUT"
+          echo "notes=${NOTES}" >> "$GITHUB_OUTPUT"
+          echo "asset_dir=${ASSET_DIR}" >> "$GITHUB_OUTPUT"
+
+      - name: Copy assets to temp
+        id: files
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          VERSION="${{ steps.ctx.outputs.version }}"
+          ASSET_DIR="${{ steps.validate.outputs.asset_dir }}"
+          TMP="${RUNNER_TEMP}/cdp-swift-release-${VERSION}"
+
+          mkdir -p "${TMP}/assets"
+          cp "${{ steps.validate.outputs.notes }}" "${TMP}/RELEASE_NOTES.md"
+
+          # Copy all assets from staging
+          for f in "${ASSET_DIR}"/*; do
+            [[ -f "$f" ]] && cp "$f" "${TMP}/assets/$(basename "$f")"
+          done
+
+          echo "tmp=${TMP}" >> "$GITHUB_OUTPUT"
+
+      - name: Cleanup staging and create tag target
+        id: tag_target
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          VERSION="${{ steps.ctx.outputs.version }}"
+          SOURCE_SHA="${{ steps.ctx.outputs.source_sha }}"
+          CLEANUP="${{ steps.ctx.outputs.cleanup_staging }}"
+
+          # Check if tag already exists
+          if git show-ref --tags --verify --quiet "refs/tags/${VERSION}"; then
+            TAG_TARGET="$(git rev-list -n 1 "${VERSION}")"
+            echo "Tag ${VERSION} already exists at ${TAG_TARGET}"
+            echo "tag_target=${TAG_TARGET}" >> "$GITHUB_OUTPUT"
+            echo "tag_exists=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          TAG_TARGET="${SOURCE_SHA}"
+
+          if [[ "${CLEANUP}" == "true" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+
+            # Verify main hasn't advanced (avoid race)
+            REMOTE_MAIN="$(git rev-parse origin/main)"
+            if [[ "${REMOTE_MAIN}" != "${SOURCE_SHA}" ]]; then
+              echo "::error::main has advanced from ${SOURCE_SHA} to ${REMOTE_MAIN}; aborting to avoid race"
+              exit 1
+            fi
+
+            git checkout -B main "${SOURCE_SHA}"
+            git rm -r --ignore-unmatch ".release/${VERSION}"
+
+            if ! git diff --cached --quiet; then
+              git commit -m "chore: clean release staging for v${VERSION} [skip ci]"
+              git push origin HEAD:main
+              TAG_TARGET="$(git rev-parse HEAD)"
+            fi
+          fi
+
+          echo "tag_target=${TAG_TARGET}" >> "$GITHUB_OUTPUT"
+          echo "tag_exists=false" >> "$GITHUB_OUTPUT"
+
+      - name: Create git tag
+        if: steps.tag_target.outputs.tag_exists == 'false'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          VERSION="${{ steps.ctx.outputs.version }}"
+          TAG_TARGET="${{ steps.tag_target.outputs.tag_target }}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git tag -a "${VERSION}" "${TAG_TARGET}" -m "CDP Swift SDK v${VERSION}"
+          git push origin "refs/tags/${VERSION}"
+
+          echo "Tagged ${VERSION} at ${TAG_TARGET}"
+
+      - name: Create GitHub Release
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          VERSION="${{ steps.ctx.outputs.version }}"
+          TMP="${{ steps.files.outputs.tmp }}"
+          ASSET_DIR="${TMP}/assets"
+          NOTES="${TMP}/RELEASE_NOTES.md"
+
+          # Build asset list
+          ASSETS=()
+          add_asset() {
+            local name="$1"
+            if [[ -f "${ASSET_DIR}/${name}" ]]; then
+              ASSETS+=("${ASSET_DIR}/${name}#${name}")
+            fi
+          }
+
+          add_asset "CDPCore.xcframework.zip"
+          add_asset "CDPCore.xcframework.zip.bundle"
+
+          # SBOM and SBOM bundle use versioned names
+          for f in "${ASSET_DIR}"/cdpcore-*.cdx.json; do
+            [[ -f "$f" ]] && ASSETS+=("$f#$(basename "$f")")
+          done
+          for f in "${ASSET_DIR}"/cdpcore-*.cdx.json.bundle; do
+            [[ -f "$f" ]] && ASSETS+=("$f#$(basename "$f")")
+          done
+
+          add_asset "CDPCore.dSYMs.zip"
+
+          # Release flags
+          FLAGS=(--repo "${GITHUB_REPOSITORY}" --title "v${VERSION}" --notes-file "${NOTES}" --verify-tag)
+
+          # Mark prerelease for versions with hyphen (e.g. 1.0.0-alpha.1)
+          if [[ "${VERSION}" == *-* ]]; then
+            FLAGS+=(--prerelease --latest=false)
+          else
+            FLAGS+=(--latest)
+          fi
+
+          # Create or update release
+          if gh release view "${VERSION}" --repo "${GITHUB_REPOSITORY}" >/dev/null 2>&1; then
+            echo "Release ${VERSION} already exists; updating assets..."
+            gh release upload "${VERSION}" "${ASSETS[@]}" --repo "${GITHUB_REPOSITORY}" --clobber
+            gh release edit "${VERSION}" --repo "${GITHUB_REPOSITORY}" --title "v${VERSION}" --notes-file "${NOTES}"
+          else
+            gh release create "${VERSION}" "${ASSETS[@]}" "${FLAGS[@]}"
+          fi
+
+          echo ""
+          echo "============================================"
+          echo "  Released v${VERSION}"
+          echo "  https://github.com/${GITHUB_REPOSITORY}/releases/tag/${VERSION}"
+          echo "============================================"
