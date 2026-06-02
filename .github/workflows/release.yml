@@ -92,15 +92,45 @@ jobs:
             exit 1
           fi
 
-          # Validate semver
-          if [[ ! "${PACKAGE_VERSION}" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
+          # Validate semver (canonical regex; must match the producer
+          # workflow exactly).
+          if [[ ! "${PACKAGE_VERSION}" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z][0-9A-Za-z.-]*)?$ ]]; then
             echo "::error::Invalid semver: ${PACKAGE_VERSION}"
+            exit 1
+          fi
+
+          # Reject v-prefixed versions: the binary target URL in
+          # Package.swift hardcodes bare semver. A v-prefixed tag would
+          # silently break SPM resolution for every consumer.
+          if [[ "${PACKAGE_VERSION}" == v* ]]; then
+            echo "::error::Public repo tag must be bare semver, not v-prefixed (got '${PACKAGE_VERSION}')"
             exit 1
           fi
 
           echo "source_sha=${SOURCE_SHA}" >> "$GITHUB_OUTPUT"
           echo "version=${PACKAGE_VERSION}" >> "$GITHUB_OUTPUT"
           echo "cleanup_staging=${CLEANUP_STAGING}" >> "$GITHUB_OUTPUT"
+
+      - name: Validate manifest schema
+        # Validate the staged manifest with the jq-based script synced
+        # from the producer repo. Catches malformed manifests (extra
+        # fields, wrong types, bad URL pattern, etc.) before any further
+        # checks run. jq is already a workflow dependency; no Node needed.
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="${{ steps.ctx.outputs.version }}"
+          MANIFEST=".release/${VERSION}/manifest.json"
+          VALIDATOR="scripts/validate-manifest.sh"
+          if [[ ! -x "${VALIDATOR}" ]]; then
+            echo "::error::Missing or non-executable ${VALIDATOR} (synced from producer repo)"
+            exit 1
+          fi
+          if [[ ! -f "${MANIFEST}" ]]; then
+            echo "::error::Missing ${MANIFEST}"
+            exit 1
+          fi
+          "${VALIDATOR}" "${MANIFEST}"
 
       - name: Validate release staging
         id: validate
@@ -169,6 +199,22 @@ jobs:
             fi
             echo "  ✓ ${ASSET_NAME}"
           done
+
+          # Cross-check that binaryTarget.checksum (which is the value
+          # SPM verifies at install time, identical to the output of
+          # `swift package compute-checksum`) matches the SHA-256 of the
+          # actual xcframework asset. Both are SHA-256 of the same file;
+          # any divergence ships a binary that SPM will reject.
+          XCFRAMEWORK_SHA="$(jq -r '.assets[] | select(.name == "CDPCore.xcframework.zip") | .sha256' "${MANIFEST}")"
+          if [[ -z "${XCFRAMEWORK_SHA}" || "${XCFRAMEWORK_SHA}" == "null" ]]; then
+            echo "::error::manifest.assets is missing CDPCore.xcframework.zip sha256"
+            exit 1
+          fi
+          if [[ "${PACKAGE_CHECKSUM}" != "${XCFRAMEWORK_SHA}" ]]; then
+            echo "::error::Package.swift/manifest checksum '${PACKAGE_CHECKSUM}' != xcframework asset SHA-256 '${XCFRAMEWORK_SHA}'"
+            echo "::error::SPM consumers would reject the published binary."
+            exit 1
+          fi
 
           echo "manifest=${MANIFEST}" >> "$GITHUB_OUTPUT"
           echo "notes=${NOTES}" >> "$GITHUB_OUTPUT"
@@ -357,28 +403,22 @@ jobs:
           TMP="${{ steps.files.outputs.tmp }}"
           ASSET_DIR="${TMP}/assets"
           NOTES="${TMP}/RELEASE_NOTES.md"
+          MANIFEST="${{ steps.validate.outputs.manifest }}"
 
-          # Build asset list
+          # Upload only assets that are listed in manifest.json. Each
+          # entry was sha256-verified by the Validate release staging step,
+          # so what we ship matches what was attested. Optional missing
+          # assets (required==false) are silently skipped, mirroring the
+          # validator's behavior.
           ASSETS=()
-          add_asset() {
-            local name="$1"
-            if [[ -f "${ASSET_DIR}/${name}" ]]; then
-              ASSETS+=("${ASSET_DIR}/${name}#${name}")
+          ASSET_COUNT="$(jq '.assets | length' "${MANIFEST}")"
+          for i in $(seq 0 $((ASSET_COUNT - 1))); do
+            ASSET_NAME="$(jq -r ".assets[${i}].name" "${MANIFEST}")"
+            ASSET_FILE="${ASSET_DIR}/${ASSET_NAME}"
+            if [[ -f "${ASSET_FILE}" ]]; then
+              ASSETS+=("${ASSET_FILE}#${ASSET_NAME}")
             fi
-          }
-
-          add_asset "CDPCore.xcframework.zip"
-          add_asset "CDPCore.xcframework.zip.bundle"
-
-          # SBOM and SBOM bundle use versioned names
-          for f in "${ASSET_DIR}"/cdpcore-*.cdx.json; do
-            [[ -f "$f" ]] && ASSETS+=("$f#$(basename "$f")")
           done
-          for f in "${ASSET_DIR}"/cdpcore-*.cdx.json.bundle; do
-            [[ -f "$f" ]] && ASSETS+=("$f#$(basename "$f")")
-          done
-
-          add_asset "CDPCore.dSYMs.zip"
 
           # Release flags
           FLAGS=(--repo "${GITHUB_REPOSITORY}" --title "v${VERSION}" --notes-file "${NOTES}" --verify-tag)
