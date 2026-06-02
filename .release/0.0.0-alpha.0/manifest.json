@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "version": "0.0.0-alpha.0",
+  "tag": "0.0.0-alpha.0",
+  "binaryTarget": {
+    "name": "CDPCore",
+    "url": "https://github.com/coinbase/cdp-swift/releases/download/0.0.0-alpha.0/CDPCore.xcframework.zip",
+    "checksum": "2fa84057930556017e614342147ed3fa89cc401f32a838b296fd4e78441e3085"
+  },
+  "assets": [
+    {
+      "role": "xcframework",
+      "name": "CDPCore.xcframework.zip",
+      "sha256": "2fa84057930556017e614342147ed3fa89cc401f32a838b296fd4e78441e3085",
+      "required": true
+    },
+    {
+      "role": "sbom",
+      "name": "cdpcore-0.0.0-alpha.0.cdx.json",
+      "sha256": "ee175a7ed108e8261c142e453ec70a8e891d1e64a5012de53dfc9d20d63053a5",
+      "required": false
+    },
+    {
+      "role": "dsyms",
+      "name": "CDPCore.dSYMs.zip",
+      "sha256": "ec4d157a936980fe2affe5beda881221414307440c75c37d0b8d662dab02a9da",
+      "required": false
+    }
+  ],
+  "source": {
+    "repository": "coinbase/cdp-swift-internal",
+    "sha": "086bfbd930c0772c7c2702bd3cdaded3e4e0e44c",
+    "workflowRunId": "75552116"
+  }
+}
