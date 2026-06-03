@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.0.0-alpha.2] - 2026-06-03
+
+### Other
+
+- producer creates tag + GitHub Release post-merge (#46)
+
+
 ## [0.0.0-alpha.1] - 2026-06-03
 
 ### Fixed
