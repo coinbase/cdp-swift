@@ -1,0 +1,569 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0278DD2EFF0B3688A9642313 /* ErrorBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C449DC7232239C4DAED748F /* ErrorBanner.swift */; };
+		161FC5736DBBFD7ABD3C16AF /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3491660152B1C3D03AD4A2 /* AuthView.swift */; };
+		166286489AAC80376C6FE456 /* SpendPermissionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494CA551219CD6B823082FA9 /* SpendPermissionsViewModel.swift */; };
+		196310FA4F69FA635F747313 /* SpendPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B2A05FFD1981459C26A33C /* SpendPermissionsView.swift */; };
+		1C0594A0A3298A58CE889660 /* EvmOperationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D008E47F107B91E3214D56 /* EvmOperationsView.swift */; };
+		22A074B6AF95E01D2ABC2391 /* DelegationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2CEB876067C3EFD62A42BA /* DelegationViewModel.swift */; };
+		34F2BEB7B8AF7E7C673814BA /* SwapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B301FAC76756F9E2251A54 /* SwapView.swift */; };
+		3A5DD714B62C7C4144E8876B /* AccountsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9906B6648E558CCA87503DCE /* AccountsView.swift */; };
+		4842D0C4F06CA5EC6BAA7115 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0973F05ED0A728298F21B235 /* Configuration.swift */; };
+		498C81652259442F9DD774E5 /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B5D34627ADF01933975AA /* CardModifier.swift */; };
+		4B7C35ADAAB6553430C3AE2C /* EvmOperationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7BB5C5C5DD5934F7016378 /* EvmOperationsViewModel.swift */; };
+		54C63825F230A3400F1670E2 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7239429258FC22D8D771DD /* SectionHeader.swift */; };
+		61A6070088C1AD381DFE44EB /* OTPVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326AA56699ADC279FC1FCB0C /* OTPVerificationView.swift */; };
+		648FD92015E99F3F9903B7E1 /* ResultCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE68A10AB7747ADF64B1A1FF /* ResultCard.swift */; };
+		6A1DB86B7C718D4584B7CE76 /* MFAViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9900F86C6C89BE932ACF2AC /* MFAViewModel.swift */; };
+		6B9D7A81DDB320BC1B0E58DA /* CDPCore in Frameworks */ = {isa = PBXBuildFile; productRef = 664311D37B15E84F953DE3DD /* CDPCore */; };
+		7B72B9D826C37DD2B4F34C5A /* SolanaOperationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67267E12F5856535F15B43F0 /* SolanaOperationsView.swift */; };
+		7ECD4C9412C7A76776BBC3B9 /* LinkAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34743CF00976487ED83F2417 /* LinkAccountView.swift */; };
+		8FDFF70718816C79B08BBCF9 /* SwapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093D168A22EAAF289CDE1E48 /* SwapViewModel.swift */; };
+		925A73599879DD3DA38C5FE0 /* TabSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8821D905C4C2B68A9CB79672 /* TabSection.swift */; };
+		943774C4B952E9E344F28C2D /* AddressLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41572837B245DD20A3F50F69 /* AddressLabel.swift */; };
+		9850823DBE2665BD411745E8 /* CDPCoreDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D130B67182D3F933426082 /* CDPCoreDemoApp.swift */; };
+		A21B01BCB600A01DA755BBB6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E91F1589CB47CA8024564 /* ContentView.swift */; };
+		A21F7974B51E01DB0AFD4B39 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8F430EFDF018350D431B6 /* LoadingButton.swift */; };
+		A3C64A13092EE76DBB5EA2FA /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64679DCEF018DC547B8D33B0 /* AppState.swift */; };
+		A4FD74AE2157A9AA45B247DB /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5232FFA127E0B2F79B99DD2F /* AuthViewModel.swift */; };
+		C26FD3B6D7770EC38ADCBCA0 /* AccountsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB275811B425CEDE0085C5 /* AccountsViewModel.swift */; };
+		C73E033420CB1D061D85EC67 /* MFAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB48E15C6EBC017626444EC2 /* MFAView.swift */; };
+		D9161B69F807234EB166C983 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD01AF8DD29EAEF0942299B /* String+Extensions.swift */; };
+		DA8212F443FF838DA12EAD65 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CEF595AFE210C22C4967E3 /* View+Extensions.swift */; };
+		DBEB721DAD8D82F5A35F88C1 /* SolanaOperationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1416468EFD46CCFF33759C54 /* SolanaOperationsViewModel.swift */; };
+		E71CA5E9796B9B7AB23D9C55 /* DelegationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EFB193F042123E8A2D8684 /* DelegationView.swift */; };
+		E7EC9D735CA1B2FFD8A0660F /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8EA800AA405A4B0E2DFC75 /* SidebarView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		093D168A22EAAF289CDE1E48 /* SwapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapViewModel.swift; sourceTree = "<group>"; };
+		0973F05ED0A728298F21B235 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		09B301FAC76756F9E2251A54 /* SwapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapView.swift; sourceTree = "<group>"; };
+		1416468EFD46CCFF33759C54 /* SolanaOperationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolanaOperationsViewModel.swift; sourceTree = "<group>"; };
+		17D8F430EFDF018350D431B6 /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
+		19CEF595AFE210C22C4967E3 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		1F7BB5C5C5DD5934F7016378 /* EvmOperationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvmOperationsViewModel.swift; sourceTree = "<group>"; };
+		2C8EA800AA405A4B0E2DFC75 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		326AA56699ADC279FC1FCB0C /* OTPVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVerificationView.swift; sourceTree = "<group>"; };
+		34743CF00976487ED83F2417 /* LinkAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAccountView.swift; sourceTree = "<group>"; };
+		38B2A05FFD1981459C26A33C /* SpendPermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendPermissionsView.swift; sourceTree = "<group>"; };
+		3C3491660152B1C3D03AD4A2 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		41572837B245DD20A3F50F69 /* AddressLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressLabel.swift; sourceTree = "<group>"; };
+		494CA551219CD6B823082FA9 /* SpendPermissionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendPermissionsViewModel.swift; sourceTree = "<group>"; };
+		5232FFA127E0B2F79B99DD2F /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		5BD01AF8DD29EAEF0942299B /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		62D130B67182D3F933426082 /* CDPCoreDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDPCoreDemoApp.swift; sourceTree = "<group>"; };
+		64679DCEF018DC547B8D33B0 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		67267E12F5856535F15B43F0 /* SolanaOperationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolanaOperationsView.swift; sourceTree = "<group>"; };
+		6C449DC7232239C4DAED748F /* ErrorBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorBanner.swift; sourceTree = "<group>"; };
+		7C7239429258FC22D8D771DD /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
+		81ECEE5ABB6723EDF1E0FCFF /* CDPCoreDemoiOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = CDPCoreDemoiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8821D905C4C2B68A9CB79672 /* TabSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabSection.swift; sourceTree = "<group>"; };
+		9906B6648E558CCA87503DCE /* AccountsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsView.swift; sourceTree = "<group>"; };
+		9B2E91F1589CB47CA8024564 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AB48E15C6EBC017626444EC2 /* MFAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFAView.swift; sourceTree = "<group>"; };
+		AE68A10AB7747ADF64B1A1FF /* ResultCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCard.swift; sourceTree = "<group>"; };
+		B0DB275811B425CEDE0085C5 /* AccountsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewModel.swift; sourceTree = "<group>"; };
+		BD2CEB876067C3EFD62A42BA /* DelegationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegationViewModel.swift; sourceTree = "<group>"; };
+		D9900F86C6C89BE932ACF2AC /* MFAViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFAViewModel.swift; sourceTree = "<group>"; };
+		DC3B5D34627ADF01933975AA /* CardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
+		E2D008E47F107B91E3214D56 /* EvmOperationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvmOperationsView.swift; sourceTree = "<group>"; };
+		F1EFB193F042123E8A2D8684 /* DelegationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegationView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		94B440FA7A1B819D89FDB475 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B9D7A81DDB320BC1B0E58DA /* CDPCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		09535601E691C8AD933E95B3 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				6DA63360FF332D9D6BBB1AEC /* Accounts */,
+				5E84E1B1FE28DEE4B54AB553 /* Auth */,
+				45BAAD19EEB1AA3BE77699AE /* Delegation */,
+				C1059126FAC205EA91831C3E /* EvmOperations */,
+				B8C388ADC2EA1621943A134B /* MFA */,
+				9F0EE3D84BC1AEC8C0A6241C /* SolanaOperations */,
+				DA1E09253543FE5836C9D1E6 /* SpendPermissions */,
+				227BC45B7585F50655F0F06F /* Swap */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		227BC45B7585F50655F0F06F /* Swap */ = {
+			isa = PBXGroup;
+			children = (
+				09B301FAC76756F9E2251A54 /* SwapView.swift */,
+				093D168A22EAAF289CDE1E48 /* SwapViewModel.swift */,
+			);
+			path = Swap;
+			sourceTree = "<group>";
+		};
+		3310238A1E0D1432EDF5AED0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5BD01AF8DD29EAEF0942299B /* String+Extensions.swift */,
+				19CEF595AFE210C22C4967E3 /* View+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		45BAAD19EEB1AA3BE77699AE /* Delegation */ = {
+			isa = PBXGroup;
+			children = (
+				F1EFB193F042123E8A2D8684 /* DelegationView.swift */,
+				BD2CEB876067C3EFD62A42BA /* DelegationViewModel.swift */,
+			);
+			path = Delegation;
+			sourceTree = "<group>";
+		};
+		5329340F057D8B84834DAFE8 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				A3CD01CD0187B69B06D0AE37 /* Components */,
+				3310238A1E0D1432EDF5AED0 /* Extensions */,
+				A103AA55DD5DE28018333AA4 /* Modifiers */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		5E84E1B1FE28DEE4B54AB553 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				3C3491660152B1C3D03AD4A2 /* AuthView.swift */,
+				5232FFA127E0B2F79B99DD2F /* AuthViewModel.swift */,
+				34743CF00976487ED83F2417 /* LinkAccountView.swift */,
+				326AA56699ADC279FC1FCB0C /* OTPVerificationView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		5FF79D5BD39521E8E23F3E1C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				64679DCEF018DC547B8D33B0 /* AppState.swift */,
+				62D130B67182D3F933426082 /* CDPCoreDemoApp.swift */,
+				0973F05ED0A728298F21B235 /* Configuration.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		6123503EC4EE9C80DCA472CF /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				9B2E91F1589CB47CA8024564 /* ContentView.swift */,
+				2C8EA800AA405A4B0E2DFC75 /* SidebarView.swift */,
+				8821D905C4C2B68A9CB79672 /* TabSection.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		6DA63360FF332D9D6BBB1AEC /* Accounts */ = {
+			isa = PBXGroup;
+			children = (
+				9906B6648E558CCA87503DCE /* AccountsView.swift */,
+				B0DB275811B425CEDE0085C5 /* AccountsViewModel.swift */,
+			);
+			path = Accounts;
+			sourceTree = "<group>";
+		};
+		86EA5B68479FB901196390FA /* CDPCoreDemo */ = {
+			isa = PBXGroup;
+			children = (
+				5FF79D5BD39521E8E23F3E1C /* App */,
+				09535601E691C8AD933E95B3 /* Features */,
+				6123503EC4EE9C80DCA472CF /* Navigation */,
+				5329340F057D8B84834DAFE8 /* Shared */,
+			);
+			name = CDPCoreDemo;
+			path = ../CDPCoreDemo/Sources/CDPCoreDemo;
+			sourceTree = "<group>";
+		};
+		9F0EE3D84BC1AEC8C0A6241C /* SolanaOperations */ = {
+			isa = PBXGroup;
+			children = (
+				67267E12F5856535F15B43F0 /* SolanaOperationsView.swift */,
+				1416468EFD46CCFF33759C54 /* SolanaOperationsViewModel.swift */,
+			);
+			path = SolanaOperations;
+			sourceTree = "<group>";
+		};
+		A103AA55DD5DE28018333AA4 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				DC3B5D34627ADF01933975AA /* CardModifier.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		A3CD01CD0187B69B06D0AE37 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				41572837B245DD20A3F50F69 /* AddressLabel.swift */,
+				6C449DC7232239C4DAED748F /* ErrorBanner.swift */,
+				17D8F430EFDF018350D431B6 /* LoadingButton.swift */,
+				AE68A10AB7747ADF64B1A1FF /* ResultCard.swift */,
+				7C7239429258FC22D8D771DD /* SectionHeader.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A7DD79C1995FFE0D8F20D165 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				81ECEE5ABB6723EDF1E0FCFF /* CDPCoreDemoiOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B8C388ADC2EA1621943A134B /* MFA */ = {
+			isa = PBXGroup;
+			children = (
+				AB48E15C6EBC017626444EC2 /* MFAView.swift */,
+				D9900F86C6C89BE932ACF2AC /* MFAViewModel.swift */,
+			);
+			path = MFA;
+			sourceTree = "<group>";
+		};
+		C1059126FAC205EA91831C3E /* EvmOperations */ = {
+			isa = PBXGroup;
+			children = (
+				E2D008E47F107B91E3214D56 /* EvmOperationsView.swift */,
+				1F7BB5C5C5DD5934F7016378 /* EvmOperationsViewModel.swift */,
+			);
+			path = EvmOperations;
+			sourceTree = "<group>";
+		};
+		DA1E09253543FE5836C9D1E6 /* SpendPermissions */ = {
+			isa = PBXGroup;
+			children = (
+				38B2A05FFD1981459C26A33C /* SpendPermissionsView.swift */,
+				494CA551219CD6B823082FA9 /* SpendPermissionsViewModel.swift */,
+			);
+			path = SpendPermissions;
+			sourceTree = "<group>";
+		};
+		E75094EE354136230E827BE3 = {
+			isa = PBXGroup;
+			children = (
+				86EA5B68479FB901196390FA /* CDPCoreDemo */,
+				A7DD79C1995FFE0D8F20D165 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B2AA42BEF3206F1668984802 /* CDPCoreDemoiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB175B1CF910EA90FBEF82C7 /* Build configuration list for PBXNativeTarget "CDPCoreDemoiOS" */;
+			buildPhases = (
+				713B6EBB73ED4F694AFD4635 /* Sources */,
+				94B440FA7A1B819D89FDB475 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CDPCoreDemoiOS;
+			packageProductDependencies = (
+				664311D37B15E84F953DE3DD /* CDPCore */,
+			);
+			productName = CDPCoreDemoiOS;
+			productReference = 81ECEE5ABB6723EDF1E0FCFF /* CDPCoreDemoiOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0159005C4730E2B1D284EAC3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+			};
+			buildConfigurationList = A047530B577B50BDF1A1EE64 /* Build configuration list for PBXProject "CDPCoreDemoiOS" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = E75094EE354136230E827BE3;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				1E2754A45E9A5B14DB71684F /* XCRemoteSwiftPackageReference "cdp-swift" */,
+			);
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B2AA42BEF3206F1668984802 /* CDPCoreDemoiOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		713B6EBB73ED4F694AFD4635 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A5DD714B62C7C4144E8876B /* AccountsView.swift in Sources */,
+				C26FD3B6D7770EC38ADCBCA0 /* AccountsViewModel.swift in Sources */,
+				943774C4B952E9E344F28C2D /* AddressLabel.swift in Sources */,
+				A3C64A13092EE76DBB5EA2FA /* AppState.swift in Sources */,
+				161FC5736DBBFD7ABD3C16AF /* AuthView.swift in Sources */,
+				A4FD74AE2157A9AA45B247DB /* AuthViewModel.swift in Sources */,
+				9850823DBE2665BD411745E8 /* CDPCoreDemoApp.swift in Sources */,
+				498C81652259442F9DD774E5 /* CardModifier.swift in Sources */,
+				4842D0C4F06CA5EC6BAA7115 /* Configuration.swift in Sources */,
+				A21B01BCB600A01DA755BBB6 /* ContentView.swift in Sources */,
+				E71CA5E9796B9B7AB23D9C55 /* DelegationView.swift in Sources */,
+				22A074B6AF95E01D2ABC2391 /* DelegationViewModel.swift in Sources */,
+				0278DD2EFF0B3688A9642313 /* ErrorBanner.swift in Sources */,
+				1C0594A0A3298A58CE889660 /* EvmOperationsView.swift in Sources */,
+				4B7C35ADAAB6553430C3AE2C /* EvmOperationsViewModel.swift in Sources */,
+				7ECD4C9412C7A76776BBC3B9 /* LinkAccountView.swift in Sources */,
+				A21F7974B51E01DB0AFD4B39 /* LoadingButton.swift in Sources */,
+				C73E033420CB1D061D85EC67 /* MFAView.swift in Sources */,
+				6A1DB86B7C718D4584B7CE76 /* MFAViewModel.swift in Sources */,
+				61A6070088C1AD381DFE44EB /* OTPVerificationView.swift in Sources */,
+				648FD92015E99F3F9903B7E1 /* ResultCard.swift in Sources */,
+				54C63825F230A3400F1670E2 /* SectionHeader.swift in Sources */,
+				E7EC9D735CA1B2FFD8A0660F /* SidebarView.swift in Sources */,
+				7B72B9D826C37DD2B4F34C5A /* SolanaOperationsView.swift in Sources */,
+				DBEB721DAD8D82F5A35F88C1 /* SolanaOperationsViewModel.swift in Sources */,
+				196310FA4F69FA635F747313 /* SpendPermissionsView.swift in Sources */,
+				166286489AAC80376C6FE456 /* SpendPermissionsViewModel.swift in Sources */,
+				D9161B69F807234EB166C983 /* String+Extensions.swift in Sources */,
+				34F2BEB7B8AF7E7C673814BA /* SwapView.swift in Sources */,
+				8FDFF70718816C79B08BBCF9 /* SwapViewModel.swift in Sources */,
+				925A73599879DD3DA38C5FE0 /* TabSection.swift in Sources */,
+				DA8212F443FF838DA12EAD65 /* View+Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		00D15BD737BB74D890595590 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SupportingFiles/CDPCoreDemoiOS.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = SupportingFiles/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.CDPCoreDemo;
+				PRODUCT_NAME = "CDP Wallets Demo";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		107ADF708C792D335D47352B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		5CA9EC6325CADB3A8AB49E3E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SupportingFiles/CDPCoreDemoiOS.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = SupportingFiles/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.CDPCoreDemo;
+				PRODUCT_NAME = "CDP Wallets Demo";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6730DFF42600F0AEDB2F8A0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A047530B577B50BDF1A1EE64 /* Build configuration list for PBXProject "CDPCoreDemoiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6730DFF42600F0AEDB2F8A0A /* Debug */,
+				107ADF708C792D335D47352B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BB175B1CF910EA90FBEF82C7 /* Build configuration list for PBXNativeTarget "CDPCoreDemoiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00D15BD737BB74D890595590 /* Debug */,
+				5CA9EC6325CADB3A8AB49E3E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1E2754A45E9A5B14DB71684F /* XCRemoteSwiftPackageReference "cdp-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/coinbase/cdp-swift";
+			requirement = {
+				kind = exactVersion;
+				version = "0.0.0-alpha.2";
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		664311D37B15E84F953DE3DD /* CDPCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1E2754A45E9A5B14DB71684F /* XCRemoteSwiftPackageReference "cdp-swift" */;
+			productName = CDPCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 0159005C4730E2B1D284EAC3 /* Project object */;
+}

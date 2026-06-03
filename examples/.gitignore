@@ -1,0 +1,52 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Xcode
+# Note: the iOS example's generated *.xcodeproj is intentionally committed
+# (regenerated from project.yml via `xcodegen generate`), so it is NOT ignored.
+# Its embedded project.xcworkspace/contents.xcworkspacedata is tracked too; only
+# per-user and resolved-package state inside workspaces is ignored below.
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+DerivedData/
+build/
+*.xcworkspace/xcuserdata/
+*.xcworkspace/xcshareddata/swiftpm/Package.resolved
+
+# Swift Package Manager
+.build/
+/Packages
+.swiftpm/
+Package.resolved
+
+# CocoaPods / Carthage (consumer use)
+Pods/
+Carthage/Build/
+Carthage/Checkouts/
+
+# Test artifacts
+*.xcresult
+.testresult/
+coverage/
+*.profraw
+*.profdata
+
+# Documentation build
+.docc-build/
+docs/
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+.vscode/
+
+# Environment
+.env
+.env.*
+# but keep the committed templates that users copy from
+!.env.example
