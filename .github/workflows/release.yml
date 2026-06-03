@@ -269,94 +269,44 @@ jobs:
               exit 1
             fi
 
-            # Check if .release/<version> exists in the tree
-            HAS_RELEASE_DIR=$(git ls-tree -d HEAD ".release/${VERSION}" 2>/dev/null | wc -l | tr -d ' ')
-            if [[ "${HAS_RELEASE_DIR}" -gt 0 ]]; then
-              # Build a new tree with .release/<version>/ removed using the GitHub API.
-              # 1. Get the current tree for the commit
-              # 2. Collect all top-level entries EXCEPT .release (we'll re-add other .release/* dirs)
-              # 3. Create new tree, commit, and update main ref — all via API for GPG signing
+            # Collect every blob path under .release/<version>/ (detached HEAD
+            # is checked out at SOURCE_SHA by the Determine version step, so we
+            # reference SOURCE_SHA explicitly rather than HEAD).
+            mapfile -t DELETE_PATHS < <(
+              git ls-tree -r --name-only "${SOURCE_SHA}" -- ".release/${VERSION}/"
+            )
 
-              # Get all files under .release/ that are NOT in .release/<version>/
-              # We need to preserve other release staging dirs if they exist
-              OTHER_RELEASE_ENTRIES=$(git ls-tree -r HEAD -- ".release/" | grep -v "^.*	.release/${VERSION}/" || true)
+            if [[ "${#DELETE_PATHS[@]}" -gt 0 ]]; then
+              BASE_TREE_SHA="$(git rev-parse "${SOURCE_SHA}^{tree}")"
 
-              # Build tree entries: start with base tree minus .release/
-              BASE_TREE_SHA=$(git rev-parse HEAD^{tree})
+              # Build a create-tree request body: base_tree + one null-sha entry
+              # per path to delete. sha:null removes each blob; base_tree inherits
+              # everything else, so any OTHER .release/* dirs are preserved
+              # automatically, and the now-empty .release/<version>/ (and .release/
+              # itself, if this was the only version) drops out — git has no empty
+              # trees. Correct whether or not other versions are staged.
+              TREE_BODY="$(
+                printf '%s\n' "${DELETE_PATHS[@]}" \
+                  | jq -R . \
+                  | jq -s --arg base "${BASE_TREE_SHA}" \
+                      '{base_tree: $base,
+                        tree: map({path: ., mode: "100644", type: "blob", sha: null})}'
+              )"
 
-              # Get top-level entries excluding .release
-              TREE_ENTRIES=$(git ls-tree HEAD | grep -v "	.release$" || true)
+              NEW_TREE_SHA="$(printf '%s' "${TREE_BODY}" \
+                | gh api "repos/${GITHUB_REPOSITORY}/git/trees" \
+                    --method POST --input - --jq '.sha')"
 
-              # Create a tree spec file
-              TREE_SPEC_FILE=$(mktemp)
-
-              # Write non-.release entries
-              echo "${TREE_ENTRIES}" > "${TREE_SPEC_FILE}"
-
-              # If there are other .release entries (other versions), reconstruct .release/ tree without this version
-              if [[ -n "${OTHER_RELEASE_ENTRIES}" ]]; then
-                # We need to create subtrees for the remaining .release content
-                # Use git mktree to build incrementally
-                # For simplicity, use the API's base_tree with explicit deletions
-                echo "Other release directories exist, preserving them"
-
-                # Use GitHub API tree creation with base_tree and null-sha entries to delete
-                # Collect all paths under .release/<version>/ to delete
-                DELETE_PATHS=$(git ls-tree -r HEAD -- ".release/${VERSION}/" | awk '{print $4}')
-
-                # Build the API payload — base_tree + null entries for deleted files
-                TREE_JSON="["
-                FIRST=true
-                while IFS= read -r path; do
-                  [[ -z "$path" ]] && continue
-                  if [[ "${FIRST}" == "true" ]]; then
-                    FIRST=false
-                  else
-                    TREE_JSON="${TREE_JSON},"
-                  fi
-                  TREE_JSON="${TREE_JSON}{\"path\":\"${path}\",\"mode\":\"100644\",\"type\":\"blob\",\"sha\":null}"
-                done <<< "${DELETE_PATHS}"
-                TREE_JSON="${TREE_JSON}]"
-
-                NEW_TREE_SHA=$(echo "${TREE_JSON}" | gh api "repos/${GITHUB_REPOSITORY}/git/trees" \
-                  --input - \
-                  -f base_tree="${BASE_TREE_SHA}" \
-                  --jq '.sha')
-              else
-                # No other .release dirs — just remove .release entirely
-                # Create tree from base excluding .release
-                TREE_JSON="["
-                FIRST=true
-                while IFS= read -r line; do
-                  [[ -z "$line" ]] && continue
-                  MODE=$(echo "$line" | awk '{print $1}')
-                  TYPE=$(echo "$line" | awk '{print $2}')
-                  SHA=$(echo "$line" | awk '{print $3}')
-                  PATH_NAME=$(echo "$line" | awk '{print $4}')
-                  if [[ "${FIRST}" == "true" ]]; then
-                    FIRST=false
-                  else
-                    TREE_JSON="${TREE_JSON},"
-                  fi
-                  TREE_JSON="${TREE_JSON}{\"path\":\"${PATH_NAME}\",\"mode\":\"${MODE}\",\"type\":\"${TYPE}\",\"sha\":\"${SHA}\"}"
-                done <<< "${TREE_ENTRIES}"
-                TREE_JSON="${TREE_JSON}]"
-
-                NEW_TREE_SHA=$(echo "${TREE_JSON}" | gh api "repos/${GITHUB_REPOSITORY}/git/trees" \
-                  --input - \
-                  --jq '.sha')
-              fi
-
-              # Create signed commit via API
-              COMMIT_SHA=$(gh api "repos/${GITHUB_REPOSITORY}/git/commits" \
+              # Create signed commit via API (GitHub signs API-created commits).
+              COMMIT_SHA="$(gh api "repos/${GITHUB_REPOSITORY}/git/commits" \
                 -f message="chore: clean release staging for v${VERSION} [skip ci]" \
                 -f tree="${NEW_TREE_SHA}" \
                 -f "parents[]=${SOURCE_SHA}" \
-                --jq '.sha')
+                --jq '.sha')"
 
-              # Update main ref
+              # Fast-forward main to the cleanup commit.
               gh api "repos/${GITHUB_REPOSITORY}/git/refs/heads/main" \
-                -X PATCH \
+                --method PATCH \
                 -f sha="${COMMIT_SHA}" \
                 -F force=false
 
