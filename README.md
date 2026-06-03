@@ -45,14 +45,17 @@ The SDK ships a single library target — **CDPCore** — exposing an actor-base
 
 ## Installation
 
-Add the SDK to your Swift package dependencies:
+Add the SDK to your Swift package dependencies using exact version pinning:
 
 ```swift
 // Package.swift
 dependencies: [
-    .package(url: "https://github.com/coinbase/cdp-swift", from: "0.1.0"),
+    .package(url: "https://github.com/coinbase/cdp-swift", exact: "0.1.0"),
 ]
 ```
+
+> [!IMPORTANT]
+> Always use `.exact("x.y.z")` version pinning — not range-based specifiers like `from:` or `.upToNextMajor`. The SDK distributes a pre-built binary framework whose checksum changes with every release; range-based resolution can pull an incompatible binary.
 
 Then add the product to your target:
 
