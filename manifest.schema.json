@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://github.com/coinbase/cdp-swift/manifest.schema.json",
+  "title": "CDPCore release manifest",
+  "description": "Schema for .release/<version>/manifest.json staged by cdp-swift-internal and consumed by cdp-swift's release workflow.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "version",
+    "tag",
+    "binaryTarget",
+    "assets",
+    "source"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(-[0-9A-Za-z][0-9A-Za-z.-]*)?$",
+      "description": "Bare semver of the release; matches Package.swift `let version` and the GitHub release tag."
+    },
+    "tag": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(-[0-9A-Za-z][0-9A-Za-z.-]*)?$",
+      "description": "Tag name on coinbase/cdp-swift (bare semver, no `v` prefix)."
+    },
+    "binaryTarget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "url", "checksum"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "const": "CDPCore"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://github\\.com/coinbase/cdp-swift/releases/download/[^/]+/CDPCore\\.xcframework\\.zip$"
+        },
+        "checksum": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "description": "SHA-256 of CDPCore.xcframework.zip (== output of `swift package compute-checksum`)."
+        }
+      }
+    },
+    "assets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role", "name", "sha256", "required"],
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": [
+              "xcframework",
+              "xcframework-cosign-bundle",
+              "sbom",
+              "sbom-cosign-bundle",
+              "dsyms"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "required": {
+            "type": "boolean"
+          }
+        }
+      },
+      "contains": {
+        "type": "object",
+        "required": ["role", "required"],
+        "properties": {
+          "role": { "const": "xcframework" },
+          "required": { "const": true }
+        }
+      },
+      "description": "Must contain at least one entry with role=xcframework, required=true."
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "sha", "workflowRunId"],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "const": "coinbase/cdp-swift-internal"
+        },
+        "sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "workflowRunId": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}
