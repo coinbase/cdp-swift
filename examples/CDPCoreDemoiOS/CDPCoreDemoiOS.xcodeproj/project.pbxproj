@@ -552,7 +552,7 @@
 			repositoryURL = "https://github.com/coinbase/cdp-swift";
 			requirement = {
 				kind = exactVersion;
-				version = "0.0.0-alpha.2";
+				version = "0.0.0-alpha.3";
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.0.0-alpha.3] - 2026-06-03
+
+### Fixed
+
+- make CDPCore xcframework consumable standalone (#48)
+
+
 ## [0.0.0-alpha.2] - 2026-06-03
 
 ### Other
