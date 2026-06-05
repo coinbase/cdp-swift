@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.0.0-alpha.4] - 2026-06-04
+
+### Added
+
+- wire OAuth, remove .env mechanism, add macOS demo (#49)
+
+
 ## [0.0.0-alpha.3] - 2026-06-03
 
 ### Fixed
