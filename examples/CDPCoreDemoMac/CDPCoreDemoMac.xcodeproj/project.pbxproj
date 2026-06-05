@@ -1,0 +1,567 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0B8A2A9F3EACFE91DEAAE3F4 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5162EB78B90162F10054F63 /* SectionHeader.swift */; };
+		0E4C424F47C4C404EBB38881 /* AccountsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F757A8EA36559CDE5ECFE85 /* AccountsView.swift */; };
+		11330EDF3E4290ACAB73F9C9 /* DelegationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B98BEF148B74C968B7CA2C /* DelegationView.swift */; };
+		13F4792EFDA9D358661A4A49 /* CDPCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2BA472CB02E27E7D81D76B9F /* CDPCore */; };
+		15DE0BA52B80C6E74EC155BE /* SolanaOperationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1778F2F56A26BBAFE719A4 /* SolanaOperationsView.swift */; };
+		1904CB4C5886D6BD537FE7DB /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375DEE3B3322CF1A1341E15F /* String+Extensions.swift */; };
+		1A5AD4A74CD351BD0F555CBF /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F371B42B0DFE33FE73B1D8 /* SidebarView.swift */; };
+		1C0C3423B0C71A5203949BA4 /* SpendPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF56D6A265946EB7D0971C7 /* SpendPermissionsView.swift */; };
+		1E8525BD8F5BA88E156F889D /* ResultCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB85FBC56C2A4D92C9D955B /* ResultCard.swift */; };
+		3ADF8B73228F2300F0A2361A /* SwapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E588482BFBA28853EF4DC60D /* SwapView.swift */; };
+		3BC36C0D4F273E19D16EF389 /* MFAViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494A331FC082240FD74FFEFE /* MFAViewModel.swift */; };
+		6D2D4E480F99437EE8970F61 /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA8441E77A0240A1E282B98 /* CardModifier.swift */; };
+		709C2DB06F86E432722552D7 /* EvmOperationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525BD6BB32DB7C441D3D8CA3 /* EvmOperationsViewModel.swift */; };
+		70E50AE760E6A69B34ED04C8 /* SwapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF410B8B86936C994AA9CA0 /* SwapViewModel.swift */; };
+		793F4D63728BEB86887FA2FF /* SpendPermissionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3B616CB58A6C10C1782AB /* SpendPermissionsViewModel.swift */; };
+		8B7C19ED846DA8B6314F8E1B /* CDPCoreDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCCCD9F9F9442EF4E6AD839 /* CDPCoreDemoApp.swift */; };
+		929504FDC7D920B5A2D7AC27 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5CA5E7C27B33054211857 /* ContentView.swift */; };
+		95DB616D4748DFAD83F84359 /* TabSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B79F59BC62A1A7935A83B /* TabSection.swift */; };
+		A5BB20C0D91A015D728DD04B /* SolanaOperationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6EE430D6EF7928097C4E5C /* SolanaOperationsViewModel.swift */; };
+		A68DA3B24B32237E7C6F5807 /* AddressLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30003B9ADDCC2E12FEB5EF25 /* AddressLabel.swift */; };
+		B19F0063B1C5E868E2D28F76 /* ErrorBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CEAA104EA1004FE51216BF /* ErrorBanner.swift */; };
+		B1E895DE2FA5357D0783A497 /* LinkAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50541E34ECED43B5F58C83F /* LinkAccountView.swift */; };
+		B3B46E13578947721844CDA5 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B9CD5E322518A7AFCE3E2B /* Configuration.swift */; };
+		C008C0CE62140F3017DD2642 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E04751E32DEAA6FD31C26 /* AppState.swift */; };
+		C682B63783515677F2BEBECC /* MFAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAAF48B9DFAB1355D756781 /* MFAView.swift */; };
+		CE20C6615A8E9FA928ABF133 /* OTPVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F8A755F4C880315E4925D8 /* OTPVerificationView.swift */; };
+		D852DBE5A5E8B04DF896E6BA /* DelegationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A2A4403CD634C561AEA8EE /* DelegationViewModel.swift */; };
+		DC10DA2C8A1569E0FC94B4F5 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0180805427AAA0078A2569 /* View+Extensions.swift */; };
+		DF3091E46DD8E8FF62A48875 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667071E9B68C38B1133F6CEC /* LoadingButton.swift */; };
+		EE399194A1C2FD94E2677EF4 /* EvmOperationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0926E5AEF799913564E0D09 /* EvmOperationsView.swift */; };
+		F859B54D16E4AA22967B9865 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4C2102676532ADE3D017A /* AuthViewModel.swift */; };
+		FBB78F30E228942ED3A7639F /* AccountsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD299D920B1C9A6788D1896F /* AccountsViewModel.swift */; };
+		FD4D71B3979AA2C24E715859 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3F30F6F32AC12C854BFD06 /* AuthView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0F757A8EA36559CDE5ECFE85 /* AccountsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsView.swift; sourceTree = "<group>"; };
+		17B9CD5E322518A7AFCE3E2B /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		18F371B42B0DFE33FE73B1D8 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		265A9BF4B8A5586B3FF4294E /* CDPCoreDemoMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CDPCoreDemoMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F9E04751E32DEAA6FD31C26 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		30003B9ADDCC2E12FEB5EF25 /* AddressLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressLabel.swift; sourceTree = "<group>"; };
+		375DEE3B3322CF1A1341E15F /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		3DA8441E77A0240A1E282B98 /* CardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
+		3FF4C2102676532ADE3D017A /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		491B79F59BC62A1A7935A83B /* TabSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabSection.swift; sourceTree = "<group>"; };
+		494A331FC082240FD74FFEFE /* MFAViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFAViewModel.swift; sourceTree = "<group>"; };
+		525BD6BB32DB7C441D3D8CA3 /* EvmOperationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvmOperationsViewModel.swift; sourceTree = "<group>"; };
+		5CB85FBC56C2A4D92C9D955B /* ResultCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCard.swift; sourceTree = "<group>"; };
+		61F8A755F4C880315E4925D8 /* OTPVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVerificationView.swift; sourceTree = "<group>"; };
+		667071E9B68C38B1133F6CEC /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
+		6CF410B8B86936C994AA9CA0 /* SwapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapViewModel.swift; sourceTree = "<group>"; };
+		8ED3B616CB58A6C10C1782AB /* SpendPermissionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendPermissionsViewModel.swift; sourceTree = "<group>"; };
+		9DAAF48B9DFAB1355D756781 /* MFAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFAView.swift; sourceTree = "<group>"; };
+		9FF56D6A265946EB7D0971C7 /* SpendPermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendPermissionsView.swift; sourceTree = "<group>"; };
+		A0926E5AEF799913564E0D09 /* EvmOperationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvmOperationsView.swift; sourceTree = "<group>"; };
+		AA1778F2F56A26BBAFE719A4 /* SolanaOperationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolanaOperationsView.swift; sourceTree = "<group>"; };
+		AD6EE430D6EF7928097C4E5C /* SolanaOperationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolanaOperationsViewModel.swift; sourceTree = "<group>"; };
+		B50541E34ECED43B5F58C83F /* LinkAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAccountView.swift; sourceTree = "<group>"; };
+		BC3F30F6F32AC12C854BFD06 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		BF0180805427AAA0078A2569 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		CDD5CA5E7C27B33054211857 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CFCCCD9F9F9442EF4E6AD839 /* CDPCoreDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDPCoreDemoApp.swift; sourceTree = "<group>"; };
+		D5162EB78B90162F10054F63 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
+		D8CEAA104EA1004FE51216BF /* ErrorBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorBanner.swift; sourceTree = "<group>"; };
+		E3B98BEF148B74C968B7CA2C /* DelegationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegationView.swift; sourceTree = "<group>"; };
+		E588482BFBA28853EF4DC60D /* SwapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapView.swift; sourceTree = "<group>"; };
+		E8A2A4403CD634C561AEA8EE /* DelegationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegationViewModel.swift; sourceTree = "<group>"; };
+		FD299D920B1C9A6788D1896F /* AccountsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0E65EDF6939B37F22D132D16 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13F4792EFDA9D358661A4A49 /* CDPCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0D89F1C3ECF257A5D251C16A /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				F1EDAC499171CF425F973C5D /* Accounts */,
+				743B72307A723E08C9D42F18 /* Auth */,
+				E6BBBB70E3785EA5F0E7D044 /* Delegation */,
+				40F3C61BC7E19766AB9B6B5E /* EvmOperations */,
+				31BE1D9C26231E8BC03AE31A /* MFA */,
+				8CAD8B77428564F6159C8DFE /* SolanaOperations */,
+				395C125A19FC47B3C72C9665 /* SpendPermissions */,
+				D73F92B65CFD36023596C4F1 /* Swap */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		31BE1D9C26231E8BC03AE31A /* MFA */ = {
+			isa = PBXGroup;
+			children = (
+				9DAAF48B9DFAB1355D756781 /* MFAView.swift */,
+				494A331FC082240FD74FFEFE /* MFAViewModel.swift */,
+			);
+			path = MFA;
+			sourceTree = "<group>";
+		};
+		395C125A19FC47B3C72C9665 /* SpendPermissions */ = {
+			isa = PBXGroup;
+			children = (
+				9FF56D6A265946EB7D0971C7 /* SpendPermissionsView.swift */,
+				8ED3B616CB58A6C10C1782AB /* SpendPermissionsViewModel.swift */,
+			);
+			path = SpendPermissions;
+			sourceTree = "<group>";
+		};
+		40F3C61BC7E19766AB9B6B5E /* EvmOperations */ = {
+			isa = PBXGroup;
+			children = (
+				A0926E5AEF799913564E0D09 /* EvmOperationsView.swift */,
+				525BD6BB32DB7C441D3D8CA3 /* EvmOperationsViewModel.swift */,
+			);
+			path = EvmOperations;
+			sourceTree = "<group>";
+		};
+		72F4DB03657F7FA7CBBF3134 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				375DEE3B3322CF1A1341E15F /* String+Extensions.swift */,
+				BF0180805427AAA0078A2569 /* View+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		743B72307A723E08C9D42F18 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				BC3F30F6F32AC12C854BFD06 /* AuthView.swift */,
+				3FF4C2102676532ADE3D017A /* AuthViewModel.swift */,
+				B50541E34ECED43B5F58C83F /* LinkAccountView.swift */,
+				61F8A755F4C880315E4925D8 /* OTPVerificationView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		8CAD8B77428564F6159C8DFE /* SolanaOperations */ = {
+			isa = PBXGroup;
+			children = (
+				AA1778F2F56A26BBAFE719A4 /* SolanaOperationsView.swift */,
+				AD6EE430D6EF7928097C4E5C /* SolanaOperationsViewModel.swift */,
+			);
+			path = SolanaOperations;
+			sourceTree = "<group>";
+		};
+		97FD9E364A320398EA4FD3E9 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				3DA8441E77A0240A1E282B98 /* CardModifier.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		9ABD967390EB3F0694691F51 = {
+			isa = PBXGroup;
+			children = (
+				9F8FD183BC8FAA5F716ED7C3 /* CDPCoreDemo */,
+				9B73592A185D008217007DE7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9B73592A185D008217007DE7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				265A9BF4B8A5586B3FF4294E /* CDPCoreDemoMac.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9F8FD183BC8FAA5F716ED7C3 /* CDPCoreDemo */ = {
+			isa = PBXGroup;
+			children = (
+				D22FEDE2469E8F3F531336DD /* App */,
+				0D89F1C3ECF257A5D251C16A /* Features */,
+				E18DFB46A2DB2B05B7F343E1 /* Navigation */,
+				F38B0A9AF988528E3724014E /* Shared */,
+			);
+			name = CDPCoreDemo;
+			path = ../CDPCoreDemo/Sources/CDPCoreDemo;
+			sourceTree = "<group>";
+		};
+		D22FEDE2469E8F3F531336DD /* App */ = {
+			isa = PBXGroup;
+			children = (
+				2F9E04751E32DEAA6FD31C26 /* AppState.swift */,
+				CFCCCD9F9F9442EF4E6AD839 /* CDPCoreDemoApp.swift */,
+				17B9CD5E322518A7AFCE3E2B /* Configuration.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		D73F92B65CFD36023596C4F1 /* Swap */ = {
+			isa = PBXGroup;
+			children = (
+				E588482BFBA28853EF4DC60D /* SwapView.swift */,
+				6CF410B8B86936C994AA9CA0 /* SwapViewModel.swift */,
+			);
+			path = Swap;
+			sourceTree = "<group>";
+		};
+		E18DFB46A2DB2B05B7F343E1 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				CDD5CA5E7C27B33054211857 /* ContentView.swift */,
+				18F371B42B0DFE33FE73B1D8 /* SidebarView.swift */,
+				491B79F59BC62A1A7935A83B /* TabSection.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		E5C31A78F4F22D7194D0E075 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				30003B9ADDCC2E12FEB5EF25 /* AddressLabel.swift */,
+				D8CEAA104EA1004FE51216BF /* ErrorBanner.swift */,
+				667071E9B68C38B1133F6CEC /* LoadingButton.swift */,
+				5CB85FBC56C2A4D92C9D955B /* ResultCard.swift */,
+				D5162EB78B90162F10054F63 /* SectionHeader.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		E6BBBB70E3785EA5F0E7D044 /* Delegation */ = {
+			isa = PBXGroup;
+			children = (
+				E3B98BEF148B74C968B7CA2C /* DelegationView.swift */,
+				E8A2A4403CD634C561AEA8EE /* DelegationViewModel.swift */,
+			);
+			path = Delegation;
+			sourceTree = "<group>";
+		};
+		F1EDAC499171CF425F973C5D /* Accounts */ = {
+			isa = PBXGroup;
+			children = (
+				0F757A8EA36559CDE5ECFE85 /* AccountsView.swift */,
+				FD299D920B1C9A6788D1896F /* AccountsViewModel.swift */,
+			);
+			path = Accounts;
+			sourceTree = "<group>";
+		};
+		F38B0A9AF988528E3724014E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				E5C31A78F4F22D7194D0E075 /* Components */,
+				72F4DB03657F7FA7CBBF3134 /* Extensions */,
+				97FD9E364A320398EA4FD3E9 /* Modifiers */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		29E83DBA7B43462DB05DCE07 /* CDPCoreDemoMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3004B0E725C2799E07AE9CEA /* Build configuration list for PBXNativeTarget "CDPCoreDemoMac" */;
+			buildPhases = (
+				6591F78BE8567BBE985EC405 /* Sources */,
+				0E65EDF6939B37F22D132D16 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CDPCoreDemoMac;
+			packageProductDependencies = (
+				2BA472CB02E27E7D81D76B9F /* CDPCore */,
+			);
+			productName = CDPCoreDemoMac;
+			productReference = 265A9BF4B8A5586B3FF4294E /* CDPCoreDemoMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E2CC0D878EFAB1E3F8D30D15 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+			};
+			buildConfigurationList = 4843B8F0BE2FE4D5B78AC270 /* Build configuration list for PBXProject "CDPCoreDemoMac" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 9ABD967390EB3F0694691F51;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				55FF6CE6D82F3A522CB97DD5 /* XCRemoteSwiftPackageReference "cdp-swift" */,
+			);
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				29E83DBA7B43462DB05DCE07 /* CDPCoreDemoMac */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6591F78BE8567BBE985EC405 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E4C424F47C4C404EBB38881 /* AccountsView.swift in Sources */,
+				FBB78F30E228942ED3A7639F /* AccountsViewModel.swift in Sources */,
+				A68DA3B24B32237E7C6F5807 /* AddressLabel.swift in Sources */,
+				C008C0CE62140F3017DD2642 /* AppState.swift in Sources */,
+				FD4D71B3979AA2C24E715859 /* AuthView.swift in Sources */,
+				F859B54D16E4AA22967B9865 /* AuthViewModel.swift in Sources */,
+				8B7C19ED846DA8B6314F8E1B /* CDPCoreDemoApp.swift in Sources */,
+				6D2D4E480F99437EE8970F61 /* CardModifier.swift in Sources */,
+				B3B46E13578947721844CDA5 /* Configuration.swift in Sources */,
+				929504FDC7D920B5A2D7AC27 /* ContentView.swift in Sources */,
+				11330EDF3E4290ACAB73F9C9 /* DelegationView.swift in Sources */,
+				D852DBE5A5E8B04DF896E6BA /* DelegationViewModel.swift in Sources */,
+				B19F0063B1C5E868E2D28F76 /* ErrorBanner.swift in Sources */,
+				EE399194A1C2FD94E2677EF4 /* EvmOperationsView.swift in Sources */,
+				709C2DB06F86E432722552D7 /* EvmOperationsViewModel.swift in Sources */,
+				B1E895DE2FA5357D0783A497 /* LinkAccountView.swift in Sources */,
+				DF3091E46DD8E8FF62A48875 /* LoadingButton.swift in Sources */,
+				C682B63783515677F2BEBECC /* MFAView.swift in Sources */,
+				3BC36C0D4F273E19D16EF389 /* MFAViewModel.swift in Sources */,
+				CE20C6615A8E9FA928ABF133 /* OTPVerificationView.swift in Sources */,
+				1E8525BD8F5BA88E156F889D /* ResultCard.swift in Sources */,
+				0B8A2A9F3EACFE91DEAAE3F4 /* SectionHeader.swift in Sources */,
+				1A5AD4A74CD351BD0F555CBF /* SidebarView.swift in Sources */,
+				15DE0BA52B80C6E74EC155BE /* SolanaOperationsView.swift in Sources */,
+				A5BB20C0D91A015D728DD04B /* SolanaOperationsViewModel.swift in Sources */,
+				1C0C3423B0C71A5203949BA4 /* SpendPermissionsView.swift in Sources */,
+				793F4D63728BEB86887FA2FF /* SpendPermissionsViewModel.swift in Sources */,
+				1904CB4C5886D6BD537FE7DB /* String+Extensions.swift in Sources */,
+				3ADF8B73228F2300F0A2361A /* SwapView.swift in Sources */,
+				70E50AE760E6A69B34ED04C8 /* SwapViewModel.swift in Sources */,
+				95DB616D4748DFAD83F84359 /* TabSection.swift in Sources */,
+				DC10DA2C8A1569E0FC94B4F5 /* View+Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		53EBA888E032EA5903A5A502 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SupportingFiles/CDPCoreDemoMac.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = SupportingFiles/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.CDPCoreDemo;
+				PRODUCT_NAME = "CDP Wallets Demo";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		73C8327BFC958D8BA84F1B2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SupportingFiles/CDPCoreDemoMac.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = SupportingFiles/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.CDPCoreDemo;
+				PRODUCT_NAME = "CDP Wallets Demo";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		A72BECF3D8A8630188F2F08E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		B0D4A7A8C7C673047310D629 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3004B0E725C2799E07AE9CEA /* Build configuration list for PBXNativeTarget "CDPCoreDemoMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53EBA888E032EA5903A5A502 /* Debug */,
+				73C8327BFC958D8BA84F1B2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4843B8F0BE2FE4D5B78AC270 /* Build configuration list for PBXProject "CDPCoreDemoMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0D4A7A8C7C673047310D629 /* Debug */,
+				A72BECF3D8A8630188F2F08E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		55FF6CE6D82F3A522CB97DD5 /* XCRemoteSwiftPackageReference "cdp-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/coinbase/cdp-swift";
+			requirement = {
+				kind = exactVersion;
+				version = "0.0.0-alpha.3";
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2BA472CB02E27E7D81D76B9F /* CDPCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 55FF6CE6D82F3A522CB97DD5 /* XCRemoteSwiftPackageReference "cdp-swift" */;
+			productName = CDPCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = E2CC0D878EFAB1E3F8D30D15 /* Project object */;
+}

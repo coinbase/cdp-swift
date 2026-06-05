@@ -14,15 +14,8 @@ the repository is private, ensure your machine has Git access to `coinbase/cdp-s
 
 ## Setup
 
-### Option A: `.env` file (recommended)
-
-1. Copy `.env.example` to `Sources/CDPCoreDemo/Resources/.env`
-2. Fill in your `CDP_PROJECT_ID`
-3. For offline testing, set `CDP_USE_MOCK=true`
-
-The `.env` file is bundled as an app resource and loaded at runtime — works in Xcode, simulators, and `swift run`.
-
-### Option B: Xcode scheme environment variables
+Configuration is read from the process environment. Set the variables on the
+**Run** scheme in Xcode:
 
 1. Open `Package.swift` in Xcode
 2. Product > Scheme > Edit Scheme (or `Cmd+<`)
@@ -34,18 +27,16 @@ The `.env` file is bundled as an app resource and loaded at runtime — works in
    - `CDP_ETHEREUM_CREATE_ON_LOGIN` = `smart` or `eoa` (optional)
    - `CDP_SOLANA_CREATE_ON_LOGIN` = `true` (optional)
 
-Process environment variables take priority over `.env` file values.
-
 ## Run
 
 ```bash
 # Build
 swift build
 
-# Run (reads .env from bundled resource or current directory)
+# Run from the terminal (export the variables above in your shell first)
 swift run
 
-# Or open in Xcode
+# Or open in Xcode and set the variables on the Run scheme
 open Package.swift
 ```
 
