@@ -14,17 +14,10 @@ the repository is private, ensure your machine has Git access to `coinbase/cdp-s
 
 ## Setup
 
-### Option A: `.env` file (recommended)
+Configuration is read from the process environment. Set the variables on the
+demo's **Run** scheme in Xcode:
 
-1. Copy `.env.example` to `Sources/CDPCoreDemo/Resources/.env`
-2. Fill in your `CDP_PROJECT_ID`
-3. For offline testing, set `CDP_USE_MOCK=true`
-
-The `.env` file is bundled as an app resource and loaded at runtime — works in Xcode, simulators, and `swift run`.
-
-### Option B: Xcode scheme environment variables
-
-1. Open `Package.swift` in Xcode
+1. Open the demo in Xcode — `Package.swift` (macOS), or `../CDPCoreDemoiOS` (iOS)
 2. Product > Scheme > Edit Scheme (or `Cmd+<`)
 3. Select **Run** > **Arguments** tab > **Environment Variables**
 4. Add:
@@ -34,20 +27,15 @@ The `.env` file is bundled as an app resource and loaded at runtime — works in
    - `CDP_ETHEREUM_CREATE_ON_LOGIN` = `smart` or `eoa` (optional)
    - `CDP_SOLANA_CREATE_ON_LOGIN` = `true` (optional)
 
-Process environment variables take priority over `.env` file values.
-
 ## Run
 
-```bash
-# Build
-swift build
+Run the demo from Xcode, which signs the build so Keychain persistence and OAuth
+via `ASWebAuthenticationSession` work:
 
-# Run (reads .env from bundled resource or current directory)
-swift run
+- **macOS** — open `Package.swift` in Xcode, select the `CDPCoreDemo` scheme, and run
+- **iOS** — open [`../CDPCoreDemoiOS`](../CDPCoreDemoiOS) (see its README)
 
-# Or open in Xcode
-open Package.swift
-```
+Set configuration via the **Run** scheme environment variables (see Setup above).
 
 ## iOS Simulator Tips
 

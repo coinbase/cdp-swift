@@ -18,9 +18,6 @@ let package = Package(
             ],
             path: "Sources/CDPCoreDemo",
             exclude: ["Info.plist"],
-            resources: [
-                .copy("Resources/.env"),
-            ],
             linkerSettings: [
                 // Embed Info.plist in the Mach-O binary's __TEXT segment so
                 // CoreFoundation reads it at dyld load time (before main).

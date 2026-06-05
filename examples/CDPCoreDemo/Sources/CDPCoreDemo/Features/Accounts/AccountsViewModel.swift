@@ -16,6 +16,13 @@ final class AccountsViewModel: ObservableObject {
         error = nil
 
         do {
+            // Diagnostic: capture the SDK's real session state at the call site so
+            // a "Not signed in" failure can be attributed to missing authState vs.
+            // a downstream walletSecret/token fetch.
+            let signedIn = await client.isSignedIn()
+            let token = try? await client.getAccessToken()
+            print("[Demo] pre-createEvmEoaAccount isSignedIn=\(signedIn) hasToken=\(token != nil)")
+
             let account = try await client.createEvmEoaAccount()
             result = "Created EOA: \(account.address)"
         } catch {

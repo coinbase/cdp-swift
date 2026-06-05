@@ -18,13 +18,8 @@ targets:
       - path: ../CDPCoreDemo/Sources/CDPCoreDemo
         excludes:
           - "Info.plist"
-          - "Resources/.env"
-          - "Resources/.env.example"
     resources:
       - path: Assets.xcassets
-      - path: Resources/.env
-        optional: true
-        buildPhase: resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.coinbase.CDPCoreDemo

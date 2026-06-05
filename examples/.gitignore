@@ -48,5 +48,3 @@ docs/
 # Environment
 .env
 .env.*
-# but keep the committed templates that users copy from
-!.env.example

@@ -88,9 +88,21 @@ final class AuthViewModel: ObservableObject {
 
         do {
             let res = try await client.verifyEmailOTP(VerifyEmailOTPOptions(flowId: flowId, otp: emailOtp))
-            result = "Signed in as: \(res.user.userId)"
-            appState?.user = res.user
-            appState?.isAuthenticated = true
+
+            // Diagnostic: compare the verify result against the SDK's real session
+            // state. `createEvmEoaAccount` is gated by the SDK's AuthManager, not by
+            // the returned result object, so log what the SDK actually persisted.
+            let signedIn = await client.isSignedIn()
+            let currentUser = await client.getCurrentUser()
+            let token = try? await client.getAccessToken()
+            print("[Demo] post-verifyEmailOTP isSignedIn=\(signedIn) result.user=\(res.user.userId) sdk.user=\(currentUser?.userId ?? "nil") hasToken=\(token != nil)")
+
+            // Derive auth state from the SDK (single source of truth) rather than
+            // trusting the result object, so the UI can't diverge from what
+            // account operations will see.
+            appState?.user = currentUser
+            appState?.isAuthenticated = signedIn
+            result = "Signed in as: \(res.user.userId) — SDK isSignedIn=\(signedIn), hasToken=\(token != nil)"
             resetEmailFlow()
         } catch {
             self.error = error.localizedDescription
@@ -135,9 +147,16 @@ final class AuthViewModel: ObservableObject {
 
         do {
             let res = try await client.verifySmsOTP(VerifySmsOTPOptions(flowId: flowId, otp: smsOtp))
-            result = "Signed in as: \(res.user.userId)"
-            appState?.user = res.user
-            appState?.isAuthenticated = true
+
+            // Diagnostic + derive auth state from the SDK (single source of truth).
+            let signedIn = await client.isSignedIn()
+            let currentUser = await client.getCurrentUser()
+            let token = try? await client.getAccessToken()
+            print("[Demo] post-verifySmsOTP isSignedIn=\(signedIn) result.user=\(res.user.userId) sdk.user=\(currentUser?.userId ?? "nil") hasToken=\(token != nil)")
+
+            appState?.user = currentUser
+            appState?.isAuthenticated = signedIn
+            result = "Signed in as: \(res.user.userId) — SDK isSignedIn=\(signedIn), hasToken=\(token != nil)"
             resetSmsFlow()
         } catch {
             self.error = error.localizedDescription
@@ -158,10 +177,40 @@ final class AuthViewModel: ObservableObject {
 
     // MARK: - OAuth Sign In
 
+    /// Guards against subscribing to OAuth state changes more than once.
+    private var isObservingOAuthState = false
+
+    /// Subscribes (once) to in-progress OAuth state so the UI reflects the
+    /// `.pending`/`.success`/`.error` transitions reported by the SDK while the
+    /// `ASWebAuthenticationSession` is presented and completes. The final signed-in
+    /// `User` still arrives via `AppState.onAuthStateChange`.
+    func observeOAuthState() async {
+        guard let client, !isObservingOAuthState else { return }
+        isObservingOAuthState = true
+
+        await client.onOAuthStateChange { [weak self] state in
+            Task { @MainActor in
+                guard let self, let state else { return }
+                switch state.status {
+                case .pending:
+                    self.result = "OAuth pending…"
+                case .success:
+                    self.result = "OAuth succeeded"
+                case .error:
+                    self.error = state.errorDescription ?? state.error ?? "OAuth failed"
+                case .none:
+                    break
+                }
+            }
+        }
+    }
+
     func signInWithOAuth(_ provider: OAuth2ProviderType) async {
         guard let client else { return }
         isLoading = true
         error = nil
+
+        await observeOAuthState()
 
         do {
             let flowId = try await client.signInWithOAuth(providerType: provider)
@@ -253,6 +302,8 @@ final class AuthViewModel: ObservableObject {
         guard let client else { return }
         isLoading = true
         error = nil
+
+        await observeOAuthState()
 
         do {
             let flowId = try await client.linkOAuth(providerType: provider)

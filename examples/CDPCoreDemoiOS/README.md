@@ -9,16 +9,14 @@ iOS version of the CDP Wallets Demo app. Uses the same source files as the macOS
 
 ## Setup
 
-1. Copy the environment file:
-   ```bash
-   cp Resources/.env.example Resources/.env
-   ```
+1. Open `CDPCoreDemoiOS.xcodeproj` in Xcode (run `xcodegen generate` first if it
+   doesn't exist).
 
-2. Edit `Resources/.env` with your CDP project configuration (or leave `CDP_USE_MOCK=true` for offline testing).
+2. Configure the app via the **Run** scheme's environment variables
+   (Product > Scheme > Edit Scheme > Run > Arguments > Environment Variables).
+   Set `CDP_PROJECT_ID`, or leave `CDP_USE_MOCK=true` for offline testing.
 
-3. Open `CDPCoreDemoiOS.xcodeproj` in Xcode.
-
-4. Select an iOS simulator or device target and run.
+3. Select an iOS simulator or device target and run.
 
 ## Project Structure
 
