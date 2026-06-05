@@ -4,10 +4,10 @@ macOS version of the CDP Wallets Demo app. Uses the same source files as the iOS
 demo (`../CDPCoreDemo/Sources/CDPCoreDemo/`) with platform-specific adaptations via
 `#if os(macOS)` guards.
 
-This target exists because OAuth sign-in relies on `ASWebAuthenticationSession`,
-which only presents from a properly bundled, signed `.app`. The plain SPM
-`swift run` executable in `../CDPCoreDemo` cannot present the provider auth page, so
-use this Xcode app target to run and verify OAuth on macOS.
+This target exists because the demo relies on Keychain persistence and OAuth via
+`ASWebAuthenticationSession`, which require a properly bundled, signed `.app`. The
+shared sources in `../CDPCoreDemo` aren't runnable as a standalone app, so use this
+Xcode app target to run and verify the demo on macOS.
 
 ## Prerequisites
 

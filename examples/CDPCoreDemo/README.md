@@ -15,9 +15,9 @@ the repository is private, ensure your machine has Git access to `coinbase/cdp-s
 ## Setup
 
 Configuration is read from the process environment. Set the variables on the
-**Run** scheme in Xcode:
+platform app's **Run** scheme in Xcode:
 
-1. Open `Package.swift` in Xcode
+1. Open the platform Xcode app project (`../CDPCoreDemoiOS` or `../CDPCoreDemoMac`)
 2. Product > Scheme > Edit Scheme (or `Cmd+<`)
 3. Select **Run** > **Arguments** tab > **Environment Variables**
 4. Add:
@@ -29,16 +29,14 @@ Configuration is read from the process environment. Set the variables on the
 
 ## Run
 
-```bash
-# Build
-swift build
+This package contains the shared app sources. Run the demo from one of the
+platform Xcode app targets, which build a properly bundled, signed `.app`
+(required for Keychain persistence and OAuth via `ASWebAuthenticationSession`):
 
-# Run from the terminal (export the variables above in your shell first)
-swift run
+- **iOS** — open [`../CDPCoreDemoiOS`](../CDPCoreDemoiOS) (see its README)
+- **macOS** — open [`../CDPCoreDemoMac`](../CDPCoreDemoMac) (see its README)
 
-# Or open in Xcode and set the variables on the Run scheme
-open Package.swift
-```
+Configure each via its **Run** scheme environment variables (see Setup above).
 
 ## iOS Simulator Tips
 
