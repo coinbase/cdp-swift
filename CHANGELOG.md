@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.0.0-alpha.5] - 2026-06-08
+
+### Fixed
+
+- inject bearer token for auth init/verify ops when signed in (link semantics) (#50)
+
+
 ## [0.0.0-alpha.4] - 2026-06-04
 
 ### Added

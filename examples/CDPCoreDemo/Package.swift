@@ -8,7 +8,7 @@ let package = Package(
         .macOS(.v13),
     ],
     dependencies: [
-        .package(url: "https://github.com/coinbase/cdp-swift", exact: "0.0.0-alpha.4"),
+        .package(url: "https://github.com/coinbase/cdp-swift", exact: "0.0.0-alpha.5"),
     ],
     targets: [
         .executableTarget(
