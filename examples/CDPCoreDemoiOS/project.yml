@@ -8,7 +8,7 @@ options:
 packages:
   CDPCore:
     url: https://github.com/coinbase/cdp-swift
-    exactVersion: 0.0.0-alpha.5
+    exactVersion: 0.0.0-alpha.6
 
 targets:
   CDPCoreDemoiOS:
