@@ -121,7 +121,6 @@ let config = CDPCoreConfig(
     useMock: false,                   // true → MockWalletsAPIClient for previews / offline
     debugging: false,                 // verbose logging
     basePath: nil,                    // override CDP API base URL
-    disableAnalytics: false,
     ethereum: EthereumConfig(
         createOnLogin: .smart,        // .smart | .eoa | nil
         enableSpendPermissions: true
