@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.0.0-alpha.7] - 2026-06-10
+
+### Fixed
+
+- use git clone instead of gh repo clone for public repo (#53)
+
+
 ## [0.0.0-alpha.6] - 2026-06-09
 
 
