@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.1-canary.0] - 2026-06-17
+
+### Other
+
+- Preserve session across iOS background transitions and near-expiry JWTs (#54)
+
+
 ## [0.1.0] - 2026-06-10
 
 ### Fixed
