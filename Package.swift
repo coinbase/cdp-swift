@@ -1,8 +1,8 @@
 // swift-tools-version: 5.9
 import PackageDescription
 
-let version = "0.1.1-canary.1"
-let checksum = "c93d072f2e9774e2e605f5fc975e7f4615d435be657123800af78d7be3b69c58"
+let version = "0.1.1"
+let checksum = "b326af8fe3fb46c195e221bc6ae1428788d84ac552dd38a32e82f31f20333aa1"
 
 let package = Package(
     name: "CDPCore",

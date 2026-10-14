@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-10-14
+
+### Other
+
+- Reapply "ci: update macOS workflow runners (#58)" (#59) (#60)
+
+
 ## [0.1.1-canary.1] - 2026-06-22
 
 
