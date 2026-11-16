@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-16
+
+### Fixed
+
+- revoke via POST /delegation/revoke routes (#62)
+
+
 ## [0.1.1] - 2026-10-14
 
 ### Other
