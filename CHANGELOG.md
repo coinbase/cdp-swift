@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.2-alpha.0] - 2026-11-20
+
+### Fixed
+
+- drop web3swift dependency (#63)
+
+
 ## [0.1.1] - 2026-10-14
 
 ### Other

@@ -2,7 +2,7 @@
 
 [![Swift 5.9+](https://img.shields.io/badge/Swift-5.9+-orange.svg)](https://swift.org)
 [![Platforms](https://img.shields.io/badge/Platforms-iOS%2016+%20|%20macOS%2013+-blue.svg)](https://developer.apple.com/swift/)
-[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://github.com/coinbase/cdp-swift/blob/main/LICENSE)
+[![License](https://img.shields.io/badge/License-Proprietary-lightgrey.svg)](https://github.com/coinbase/cdp-swift/blob/main/LICENSE)
 
 ## Table of Contents
 
@@ -563,7 +563,7 @@ For richer fake responses (programmable per-call), implement the `WalletsAPIClie
 
 ## License
 
-This project is licensed under the Apache 2.0 License — see the [LICENSE](LICENSE) file for details.
+CDPCore is distributed as a pre-compiled binary under the Coinbase Developer Platform SDK License. See the [LICENSE](LICENSE) file for the terms. For licensing questions, contact developer-platform@coinbase.com.
 
 ## Support
 
